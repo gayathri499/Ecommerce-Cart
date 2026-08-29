@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Successful - GayuCart</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            🛒 GayuCart
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/cart">Cart 🛒</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Success Message -->
+    <section class="success-section">
+
+        <div class="success-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h1>Order Placed Successfully!</h1>
+
+            <p class="success-message">
+                Thank you for shopping with GayuCart.
+            </p>
+
+            <div class="order-details">
+
+                <p>
+                    <strong>Order ID:</strong>
+                    #{{ order_id }}
+                </p>
+
+                <p>
+                    <strong>Customer:</strong>
+                    {{ customer_name }}
+                </p>
+
+                <p>
+                    <strong>Total Amount:</strong>
+                    ₹{{ total }}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    <span class="status">
+                        Confirmed
+                    </span>
+                </p>
+
+            </div>
+
+            <p class="delivery-message">
+                Your order has been received and is being processed.
+            </p>
+
+            <a href="/" class="shop-btn">
+                Continue Shopping
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 GayuCart | Dynamic E-Commerce Cart System
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

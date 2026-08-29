@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - GayuCart</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            🛒 GayuCart
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/cart">Cart 🛒</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Checkout -->
+    <section class="checkout-section">
+
+        <h1>Checkout</h1>
+
+        <div class="checkout-container">
+
+            <!-- Customer Form -->
+            <div class="checkout-form">
+
+                <h2>Customer Details</h2>
+
+                <form id="checkoutForm"
+                      action="/place_order"
+                      method="POST">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                    >
+
+                    <small id="nameError"></small>
+
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                    >
+
+                    <small id="emailError"></small>
+
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="phone"
+                        name="phone"
+                        placeholder="10-digit phone number"
+                        maxlength="10"
+                    >
+
+                    <small id="phoneError"></small>
+
+
+                    <label for="address">
+                        Delivery Address
+                    </label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        rows="4"
+                        placeholder="Enter your delivery address"
+                    ></textarea>
+
+                    <small id="addressError"></small>
+
+
+                    <button type="submit"
+                            class="place-order-btn">
+
+                        Place Order
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- Order Summary -->
+            <div class="checkout-summary">
+
+                <h2>Order Summary</h2>
+
+                {% for item in cart_items %}
+
+                <div class="checkout-item">
+
+                    <span>
+                        {{ item.name }}
+                        × {{ item.quantity }}
+                    </span>
+
+                    <strong>
+                        ₹{{ item.subtotal }}
+                    </strong>
+
+                </div>
+
+                {% endfor %}
+
+
+                <div class="checkout-total">
+
+                    <span>Total</span>
+
+                    <strong>
+                        ₹{{ total }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            © 2026 GayuCart | Dynamic E-Commerce Cart System
+        </p>
+
+    </footer>
+
+
+    <!-- Client-side JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart - GayuCart</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            🛒 GayuCart
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/cart">Cart 🛒</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+
+        <h1>Shopping Cart</h1>
+
+        {% if cart_items %}
+
+        <div class="cart-container">
+
+            <!-- Cart Items -->
+            <div class="cart-items">
+
+                {% for item in cart_items %}
+
+                <div class="cart-item">
+
+                    <div class="item-info">
+
+                        <h3>{{ item.name }}</h3>
+
+                        <p>
+                            Price: ₹{{ item.price }}
+                        </p>
+
+                    </div>
+
+
+                    <!-- Quantity Controls -->
+                    <div class="quantity">
+
+                        <a href="{{ url_for(
+                            'update_cart',
+                            product_id=item.id,
+                            action='decrease'
+                        ) }}">
+                            −
+                        </a>
+
+                        <span>
+                            {{ item.quantity }}
+                        </span>
+
+                        <a href="{{ url_for(
+                            'update_cart',
+                            product_id=item.id,
+                            action='increase'
+                        ) }}">
+                            +
+                        </a>
+
+                    </div>
+
+
+                    <!-- Subtotal -->
+                    <div class="item-subtotal">
+
+                        ₹{{ item.subtotal }}
+
+                    </div>
+
+
+                    <!-- Remove -->
+                    <a class="remove-btn"
+                       href="{{ url_for(
+                           'remove_from_cart',
+                           product_id=item.id
+                       ) }}">
+
+                        Remove
+
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+
+                <h2>Order Summary</h2>
+
+                <div class="summary-row">
+
+                    <span>Total</span>
+
+                    <strong>
+                        ₹{{ total }}
+                    </strong>
+
+                </div>
+
+
+                <a href="/checkout"
+                   class="checkout-btn">
+
+                    Proceed to Checkout
+
+                </a>
+
+
+                <a href="/"
+                   class="continue-btn">
+
+                    Continue Shopping
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <!-- Empty Cart -->
+
+        <div class="empty-cart">
+
+            <h2>Your cart is empty 🛒</h2>
+
+            <p>
+                Add some products to your cart.
+            </p>
+
+            <a href="/" class="shop-btn">
+                Start Shopping
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 GayuCart | Dynamic E-Commerce Cart System
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

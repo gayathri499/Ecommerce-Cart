@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GayuCart - Online Store</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            🛒 GayuCart
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/cart">Cart 🛒</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div>
+            <h1>Welcome to GayuCart</h1>
+
+            <p>
+                Shop smart. Shop simple.
+            </p>
+
+            <a href="#products" class="shop-btn">
+                Shop Now
+            </a>
+        </div>
+
+    </section>
+
+
+    <!-- Products -->
+    <section id="products" class="products-section">
+
+        <h2>Our Products</h2>
+
+        <div class="product-container">
+
+            {% for product in products %}
+
+            <div class="product-card">
+
+                <img src="{{ url_for('static', filename=product.image) }}"
+                    alt="{{ product.name }}">
+
+                <h3>{{ product.name }}</h3>
+
+                <p class="price">
+                    ₹{{ product.price }}
+                </p>
+
+                <a href="{{ url_for('add_to_cart', product_id=product.id) }}"
+                   class="cart-btn">
+                    Add to Cart
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 GayuCart | Dynamic E-Commerce Cart System
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
